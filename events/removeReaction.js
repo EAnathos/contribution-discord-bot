@@ -8,7 +8,8 @@ module.exports = {
     name: Events.MessageReactionRemove,
     async execute(messageReaction, user) {
         
-        if (message.channel.id !== infoChannelID) return;
+        
+        if ((messageReaction.message.channel.id !== infoChannelID) && (messageReaction.message.channel.parentId !== modChannelID)) return;
 
         const message = messageReaction.message;
 

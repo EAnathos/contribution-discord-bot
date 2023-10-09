@@ -131,3 +131,6 @@ dist
 
 # other
 database.sqlite
+config.json
+configTemplate.json
+config2.json
