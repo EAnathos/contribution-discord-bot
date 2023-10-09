@@ -1,0 +1,16 @@
+{
+  "name": "contribution-discord-bot",
+  "version": "1.0.0",
+  "description": "This is a Discord bot made in Discord.js that allows you to reward the members of your server with contribution points when they respond to surveys, or other activities.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anathos",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.13.0",
+    "sequelize": "^6.33.0",
+    "sqlite3": "^5.1.6"
+  }
+}
