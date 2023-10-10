@@ -19,6 +19,7 @@ function resetPoint(id) {
 
   if (user) {
     user.contributionPoint = 0;
+    user.allContributionPoint = 0;
     return user.save();
   }
 
@@ -28,6 +29,7 @@ function resetPoint(id) {
 function resetAllPoint() {
   contribution.forEach((user) => {
     user.contributionPoint = 0;
+    user.allContributionPoint = 0;
     user.save();
   });
 
@@ -39,13 +41,11 @@ async function addPoint(id, amount) {
 
   if (user) {
 		user.contributionPoint += Number(amount);
+    user.allContributionPoint += Number(amount);
 		return user.save();
 	}
 
-  const newUser = await Contribution.create({ user_id: id, contributionPoint: amount });
-	contribution.set(id, newUser);
-
-  return newUser;
+  return createNewUser(id, amount);
 }
 
 async function remPoint(id, amount) {
@@ -53,11 +53,16 @@ async function remPoint(id, amount) {
 
   if (user) {
 		user.contributionPoint -= Number(amount);
+    user.allContributionPoint -= Number(amount);
 		return user.save();
 	}
 
-  const newUser = await Contribution.create({ user_id: id, contributionPoint: amount });
-	contribution.set(id, newUser);
+  return createNewUser(id, amount);
+}
+
+async function createNewUser(id, amount) {
+  const newUser = await Contribution.create({ user_id: id, contributionPoint: amount, allContributionPoint: amount });
+  contribution.set(id, newUser);
 
   return newUser;
 }

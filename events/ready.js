@@ -18,10 +18,12 @@ module.exports = {
     const infoChannel = client.channels.cache.get(infoChannelID);
     await infoChannel.messages.fetch({ limit: 30 });
 
-	const modChannel = client.channels.cache.get(modChannelID);
-	await modChannel.threads.cache.forEach(async (thread) => {
-	  await thread.messages.fetch({ limit: 30 });
-	});
+    const modChannel = client.channels.cache.get(modChannelID);
+    await modChannel.threads.cache.forEach(async (thread) => {
+      const messages = await thread.messages.fetch({ limit: 16 });
+      const oldestMessage = messages.last();
+      await thread.messages.fetch({ limit: 15, before: oldestMessage.id });
+    });
 
     console.log(`Ready! Logged in as ${client.user.tag}`);
   },
