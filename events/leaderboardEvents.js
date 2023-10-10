@@ -65,9 +65,11 @@ module.exports = {
               embeds: [embed],
               components: [leaderboardButton],
             });
+
+            await interaction.deferUpdate();
           }
         } else {
-          if (actualPageInt * 10 > contribution.size) {
+          if ((actualPageInt * 10 + 1) > contribution.size) {
             await interaction.reply({
               content: "Vous ne pouvez pas aller en avant !",
               ephemeral: true,
@@ -93,9 +95,10 @@ module.exports = {
               embeds: [embed],
               components: [leaderboardButton],
             });
+
+            await interaction.deferUpdate();
           }
         }
-        await interaction.deferUpdate();
       }
     }
   },
