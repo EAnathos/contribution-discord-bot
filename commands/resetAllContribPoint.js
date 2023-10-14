@@ -2,15 +2,19 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 const { resetAllPoint } = require("../utils/contribFunctions.js");
 
+const i18n = require('i18n')
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("resetallcontribpoint")
     .setDescription("Reset contribution point for all users"),
   async execute(interaction) {
     const embed = new EmbedBuilder()
-      .setTitle("Réinitialisation")
+      .setTitle(i18n.__("resetAllContribPoint.embed.title"))
       .setDescription(
-        `<@${interaction.user.id}> a réinitialisé les points de contribution de tous les membres.`
+        i18n.__("resetAllContribPoint.embed.description",
+            interaction.user.id
+            )
       )
       .setColor("#ff0000")
       .setTimestamp();

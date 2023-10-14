@@ -2,6 +2,8 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 const { remPoint } = require("../utils/contribFunctions.js");
 
+const i18n = require('i18n')
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("removecontribpoint")
@@ -27,9 +29,12 @@ module.exports = {
     const amount = interaction.options.getInteger("montant");
 
     const resultEmbed = new EmbedBuilder()
-      .setTitle("Retrait")
+      .setTitle(i18n.__("removeContribPoint.embed.title"))
       .setDescription(
-        `${interaction.user} a retiré ${amount} point(s) de contribution à <@${memberID}>.`
+          i18n.__("removeContribPoint.embed.description",
+              interaction.user.id, i18n.__n("global.points", amount), memberID
+          )
+
       )
       .setColor("#ff0000")
       .setTimestamp();

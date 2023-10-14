@@ -2,6 +2,8 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 const { addPoint } = require("../utils/contribFunctions.js");
 
+const i18n = require('i18n')
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("addcontribpoint")
@@ -23,9 +25,11 @@ module.exports = {
     const amount = interaction.options.getInteger("montant");
 
     const resultEmbed = new EmbedBuilder()
-        .setTitle("Ajout")
+        .setTitle(i18n.__("addContribPoint.embed.title"))
         .setDescription(
-          `${interaction.user} a ajouté ${amount} point(s) de contribution à <@${memberID}>.`
+            i18n.__("addContribPoint.embed.description",
+                interaction.user.id, i18n.__n("global.points", amount), memberID
+            )
         )
         .setColor("#00ff00")
         .setTimestamp();
