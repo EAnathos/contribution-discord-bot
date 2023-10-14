@@ -52,7 +52,7 @@ for (const file of eventFiles) {
 // Configuring i18n:
 i18n.configure({
   objectNotation: true, // So we can use a.b.c.d as a kind of class.
-  locales: ['en', 'fr'], // the list of xx.json availables languages
+  locales: ['ia', 'fr'], // the list of xx.json availables languages
   directory: path.join(__dirname, 'locales') // the /locales folder
 })
 
