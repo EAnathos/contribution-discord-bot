@@ -46,7 +46,7 @@ module.exports = {
         contribution.sort((a, b) => b.contributionPoint - a.contributionPoint);
 
         if (interaction.customId === "previous") {
-          if (actualPageInt == 1) {
+          if (actualPageInt === 1) {
             await interaction.reply({
               content: i18n.__('leaderboardEvent.buttons.errors.goBack'),
               ephemeral: true,
