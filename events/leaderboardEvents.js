@@ -5,6 +5,8 @@ const {
   EmbedBuilder,
 } = require("discord.js");
 
+const i18n = require('i18n')
+
 const Variables = require("../index.js");
 const contribution = Variables.contribution;
 
@@ -21,8 +23,12 @@ module.exports = {
         );
 
         const embed = new EmbedBuilder()
-          .setTitle(`Leaderboard [${actualPageInt + 1}]`)
-          .setDescription(`Voici le leaderboard des points de contribution.`)
+          .setTitle(
+              i18n.__('leaderboard.embed.title', actualPageInt + 1)
+          )
+          .setDescription(
+              i18n.__('leaderboard.embed.description')
+          )
           .setColor("#0000ff")
           .setTimestamp();
 
@@ -40,13 +46,13 @@ module.exports = {
         contribution.sort((a, b) => b.contributionPoint - a.contributionPoint);
 
         if (interaction.customId === "previous") {
-          if (actualPageInt == 1) {
+          if (actualPageInt === 1) {
             await interaction.reply({
-              content: "Vous ne pouvez pas aller en arrière !",
+              content: i18n.__('leaderboardEvent.buttons.errors.goBack'),
               ephemeral: true,
             });
           } else {
-            embed.setTitle(`Leaderboard [${actualPageInt - 1}]`);
+            embed.setTitle(i18n.__("leaderboard.embed.title", actualPageInt + 1));
 
             const startIndex = (actualPageInt - 2) * 10;
             const endIndex = startIndex + 10;
@@ -55,8 +61,18 @@ module.exports = {
               const user = contribution.get(contribution.keyAt(i));
               if (user) {
                 embed.addFields({
-                  name: `Top ${i + 1} : `,
-                  value: `<@${user.user_id}> avec **${user.contributionPoint}** points de contribution`,
+                  name: i18n.__(
+                      "leaderboard.embed.field.name",
+                      i+1
+                  ),
+                  value: i18n.__(
+                      "leaderboard.embed.field.value",
+                      user.user_id, // The ID of the user
+
+                      i18n.__n(
+                          "global.points",
+                          user.contributionPoint // X point(s)
+                      ))
                 });
               }
             }
@@ -71,7 +87,7 @@ module.exports = {
         } else {
           if ((actualPageInt * 10 + 1) > contribution.size) {
             await interaction.reply({
-              content: "Vous ne pouvez pas aller en avant !",
+              content: i18n.__('leaderboardEvent.buttons.errors.goFroward'),
               ephemeral: true,
             });
           } else {
@@ -85,8 +101,15 @@ module.exports = {
               const user = contribution.get(contribution.keyAt(i));
               if (user) {
                 embed.addFields({
-                  name: `Top ${i + 1} : `,
-                  value: `<@${user.user_id}> avec **${user.contributionPoint}** points de contribution`,
+                  name: i18n.__(
+                      "leaderboard.embed.field.name" , i+1
+                  ),
+                  value: i18n.__(
+                      "leaderboard.embed.field.value",
+                      user.user_id, // The ID of the user
+                      i18n.__n(
+                          "global.points", user.contributionPoint // X point(s)
+                      ))
                 });
               }
             }

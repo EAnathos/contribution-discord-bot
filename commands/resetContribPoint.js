@@ -2,6 +2,8 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 const { resetPoint } = require("../utils/contribFunctions.js");
 
+const i18n = require('i18n')
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("resetcontribpoint")
@@ -17,8 +19,10 @@ module.exports = {
     const memberID = interaction.options.getUser("membre").id;
 
     const resultEmbed = new EmbedBuilder()
-      .setTitle("Réinitialisation")
-      .setDescription(`<@${interaction.user.id}> a réinitialisé les points de contribution de <@${memberID}>.`)
+      .setTitle(i18n.__("resetContribPoint.embed.title"))
+      .setDescription(
+        i18n.__("resetContribPoint.embed.description",
+            memberID, interaction.user.id))
       .setColor("#ff0000")
       .setTimestamp();
 
