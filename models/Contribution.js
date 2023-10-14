@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
         allowNull: false,
+      },
+      lang: {
+        type: DataTypes.CHAR(2),
+        defaultValue: 'fr',
+        allowNull: false,
       }
     },
     {

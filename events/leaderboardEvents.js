@@ -6,6 +6,7 @@ const {
 } = require("discord.js");
 
 const i18n = require('i18n')
+const {getLang} = require('../utils/contribFunctions.js')
 
 const Variables = require("../index.js");
 const contribution = Variables.contribution;
@@ -13,7 +14,11 @@ const contribution = Variables.contribution;
 module.exports = {
   name: Events.InteractionCreate,
   async execute(interaction) {
+    // We set the language of the bot to the language of the user who has initiated the interaction
+    i18n.setLocale(getLang(interaction.user.id))
+
     if (interaction.isButton()) {
+
       if (
         interaction.customId === "previous" ||
         interaction.customId === "next"
