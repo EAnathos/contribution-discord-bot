@@ -4,10 +4,6 @@
             "zero": "0 points de contribution",
 			"one": "**%s** point de contribution",
 			"other": "**%s** points de contribution"
-		},
-		"point": {
-			"one": "global.point",
-			"other": "global.point"
 		}
 	},
 	"leaderboard": {
