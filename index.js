@@ -4,6 +4,7 @@ const path = require("node:path");
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 
 const { token } = require("./config.json");
+const i18n = require("i18n");
 
 const contribution = new Collection();
 exports.contribution = contribution;
@@ -46,6 +47,18 @@ for (const file of eventFiles) {
     client.on(event.name, (...args) => event.execute(...args));
   }
 }
+
+
+// Configuring i18n:
+i18n.configure({
+  objectNotation: true, // So we can use a.b.c.d as a kind of class.
+  locales: ['en', 'fr'], // the list of xx.json availables languages
+  directory: path.join(__dirname, 'locales') // the /locales folder
+})
+
+
+// Default locale:
+i18n.setLocale('fr')
 
 // Log in to Discord with your client's token
 client.login(token);
