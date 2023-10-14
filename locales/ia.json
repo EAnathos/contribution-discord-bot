@@ -60,7 +60,7 @@
 	},
 	"sendEmbedTicket": {
 		"embed": {
-			"name": "Aperir un ticket",
+			"title": "Aperir un ticket",
 			"description": "**Benvenite al sala de creation de ticket!**\n            \n Le systema de ticket pote esser usate pro:\n* Invitar un persona in le servitor (extra de BUT).\n* Reportar un jocator / un bug.\n* Reservar le servitor de evento.\n* Requestar le accesso al commandos bloc in le servitor creative.\n\n *Pro aperir un ticket, clicca sur le button infra.*"
 		},
 		"button": {
