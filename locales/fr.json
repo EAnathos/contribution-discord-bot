@@ -52,6 +52,12 @@
 			"description": "<@%s> a réinitialisé les points de contribution de <@%s>."
 		}
 	},
+	"setLang": {
+		"embed": {
+			"title": "Langue",
+			"description": "Votre langue a été changée en français."
+		}
+	},
 	"sendEmbedTicket": {
 		"embed": {
 			"name": "Ouvrir un ticket",
