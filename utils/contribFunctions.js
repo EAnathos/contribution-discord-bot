@@ -83,13 +83,13 @@ async function remPoint(id, amount) {
 }
 
 async function createNewUser(id, amount, language = 'fr') {
-    console.log("aa")
+
   const newUser = await Contribution.create(
       { user_id: id, contributionPoint: amount, allContributionPoint: amount, lang: language}
   );
-    console.log("bb")
+
   contribution.set(id, newUser);
-console.log("cc")
+
   return newUser;
 }
 
