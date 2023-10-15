@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
-const { remPoint } = require("../utils/contribFunctions.js");
+const { remPoint, getLang } = require("../utils/contribFunctions.js");
 
 const i18n = require('i18n')
 
@@ -25,6 +25,9 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
+    // We do change the language of the bot to the language of the user:
+    i18n.setLocale(getLang(interaction.user.id))
+
     const memberID = interaction.options.getUser("membre").id;
     const amount = interaction.options.getInteger("montant");
 

@@ -2,6 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder } = r
 
 const Variables = require("../index.js");
 const contribution = Variables.contribution;
+const { getLang } = require("../utils/contribFunctions.js")
 
 const i18n = require('i18n')
 
@@ -9,7 +10,11 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("leaderboardpoint")
     .setDescription("Show the leaderboard of contribution point"),
+
   async execute(interaction) {
+    // We do change the language of the bot to the language of the user:
+    i18n.setLocale(getLang(interaction.user.id))
+
     const embed = new EmbedBuilder()
       .setTitle(
           i18n.__("leaderboard.embed.title", 1)
